@@ -1,8 +1,9 @@
 import React from 'react'
+import assets from '../assets/assets.js'
 
 const logo = () => {
   return (
-    <div>logo</div>
+    <img src={assets.logo} alt="logo" height={40} width={40}/>
   )
 }
 

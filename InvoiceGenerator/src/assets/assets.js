@@ -1,4 +1,5 @@
-import logo from './logo.png';
-export const assets = {
+import logo from './logo.jpeg';
+const assets = {
     logo,
-}
+};
+export default assets;
