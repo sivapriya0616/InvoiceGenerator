@@ -1,10 +1,9 @@
-import React from 'react'
-import assets from '../assets/assets.js'
+import { assets } from '../assets/assets.js';
 
-const logo = () => {
+const Logo = () => {
   return (
-    <img src={assets.logo} alt="logo" height={40} width={40}/>
-  )
-}
+    <img src={assets.logo} alt="Logo" height={48} width={48} />
+  );
+};
 
-export default logo
+export default Logo;

@@ -1,5 +1,13 @@
 import logo from './logo.jpeg';
-const assets = {
+import landing1 from './landing1.jpeg';
+import landing2 from './landing2.jpeg';
+import landing3 from './landing3.jpeg';
+import landing4 from './landing4.jpeg';
+
+export const assets = {
     logo,
+    landing1,
+    landing2,
+    landing3,
+    landing4
 };
-export default assets;
