@@ -6,7 +6,7 @@ const LandingPage = () => {
     return (
         <>
             {/* Hero Section: Full-width, centered text with background image */}
-            <header id="hero" className="hero-section text-white text-center">
+            <header id="hero" className="hero-section text-white bg-primary text-center">
                 <div className="container py-5 d-flex flex-column justify-content-center" style={{ height: '100vh' }}> {/* style code not sure */}
                     <div className="row py-lg-5">
                         <div className="col-lg-9 col-md-10 mx-auto">
@@ -39,7 +39,7 @@ const LandingPage = () => {
                         {/* Step 1 Card */}
                         <div className="col-md-6 col-lg-3 d-flex">
                             <div className="card h-100 shadow-sm border-0 text-center flex-fill">
-                                <div className="card-img-top-container d-flex align-items-center justify-content p-4 bg-info-soft" >
+                                <div className="card-img-top-container d-flex align-items-center justify-content-center p-4 " style={{ backgroundColor: '#d4edda' }} >
                                     <img src="https://placehold.co/150x150/0D6EFD/FFFFFF?text=1&font=montserrat"
                                         className="rounded-circle"
                                         alt="Enter Details"
@@ -60,7 +60,7 @@ const LandingPage = () => {
                         {/* Step 2 Card */}
                         <div className="col-md-6 col-lg-3 d-flex">
                             <div className="card h-100 shadow-sm border-0 text-center flex-fill">
-                                <div className="card-img-top-container d-flex align-items-center justify-content p-4 bg-info-soft" >
+                                <div className="card-img-top-container d-flex align-items-center justify-content-center p-4 "  style={{ backgroundColor: '#ffe6f0' }}>
                                     <img src="https://placehold.co/150x150/0D6EFD/FFFFFF?text=2&font=montserrat"
                                         className="rounded-circle"
                                         alt="Choose Template"
@@ -81,7 +81,7 @@ const LandingPage = () => {
                         {/* Step 3 Card */}
                         <div className="col-md-6 col-lg-3 d-flex">
                             <div className="card h-100 shadow-sm border-0 text-center flex-fill">
-                                <div className="card-img-top-container d-flex align-items-center justify-content p-4 bg-info-soft" >
+                                <div className="card-img-top-container d-flex align-items-center justify-content-center p-4 "  style={{ backgroundColor: '#e6f0ff' }} >
                                     <img src="https://placehold.co/150x150/0D6EFD/FFFFFF?text=3&font=montserrat"
                                         className="rounded-circle"
                                         alt="Preview Invoice"
@@ -102,9 +102,10 @@ const LandingPage = () => {
                         {/* Step 4 Card */}
                         <div className="col-md-6 col-lg-3 d-flex">
                             <div className="card h-100 shadow-sm border-0 text-center flex-fill">
-                                <div className="card-img-top-container d-flex align-items-center justify-content p-4 bg-info-soft" >
+                                <div className="card-img-top-container d-flex align-items-center justify-content-center p-4 " style={{ backgroundColor: '#f3e6ff' }} >
                                     <img src="https://placehold.co/150x150/0D6EFD/FFFFFF?text=4&font=montserrat"
                                         className="rounded-circle"
+                                        
                                         alt="Download & Save"
                                         onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/150x150/E0E0E0/000000?text=Error'; }}
                                     />
@@ -229,6 +230,25 @@ const LandingPage = () => {
 
                 </div>
             </section>
+            <section id="generate-invoice" className="py-5 text-center bg-primary text-white">
+               <div className="container">
+               <h2 className="display-5 fw-bold mb-3">Ready to Streamline Your Invoicing?</h2>
+                <p className="lead mb-4 mx-auto" style={{ maxWidth: '600px' }}>
+                Join thousands of freelancers and small businesses who trust QuickInvoice.
+                Start creating professional invoices today - it's fast, easy, and effective!
+                </p>
+                <button
+                  className="btn btn-lg btn-warning fw-bold rounded-pill px-5 py-3"
+                  onClick={() => window.location.href = '/Generate'}
+                 >
+                  Start Generating Invoices Now
+                  </button>
+                  <p className="mt-3 small">
+                   (This will lead to the invoice generation interface)
+                   </p>
+                  </div>
+                   </section>
+            
         </>
     )
 }
