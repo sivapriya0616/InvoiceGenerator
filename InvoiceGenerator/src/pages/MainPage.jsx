@@ -1,10 +1,19 @@
 import React, { useContext } from 'react'; // Add useContext here
 import { AppContext } from '../context/AppContext.jsx';
-import { Pencil } from 'react-bootstrap-icons';
+import { Pencil } from 'lucide-react';
 
 const MainPage = () => {
   const [isEdittingTitle, setIsEdittingTitle] = React.useState(false);
   const { invoiceTitle, setInvoiceTitle } = useContext(AppContext); // Destructure context values
+   const handleTitleChange = (e) => {
+    setInvoiceTitle(e.target.value);
+  }
+  const handleTitleBlur = () => {
+    setIsEdittingTitle(false);
+  }
+  const handleTitleEdit = () => {
+    setIsEdittingTitle(true);
+  }
 
   return (
     <div className="container-fluid bg-light min-vh-100 py-4">
@@ -17,15 +26,15 @@ const MainPage = () => {
                 className="form-control me-2"
                 autoFocus
                 value={invoiceTitle}
-                onChange={(e) => setInvoiceTitle(e.target.value)}
-                onBlur={() => setIsEdittingTitle(false)}
+                onChange={(e) => handleTitleChange(e)}
+                onBlur={handleTitleBlur}
               />
             ) : (
               <>
                 <h5 className="mb-0 me-2">{invoiceTitle}</h5>
                 <button
                   className="btn btn-sm p-0 border-0 bg-transparent"
-                  onClick={() => setIsEdittingTitle(true)}
+                  onClick={handleTitleEdit}
                 >
                   <Pencil className="text-primary" size={20} />
                 </button>
