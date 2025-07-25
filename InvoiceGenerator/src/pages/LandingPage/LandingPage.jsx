@@ -283,3 +283,4 @@ const LandingPage = () => {
 }
 
 export default LandingPage;
+// here i used boootstrap icons (using npm insatll...) but i can used lucide icons (put  <Twitter> instead to <i className="bi bi-twitter"></i>)
