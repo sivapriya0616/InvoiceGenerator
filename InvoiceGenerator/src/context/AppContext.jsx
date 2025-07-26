@@ -2,6 +2,47 @@ import { createContext, useState } from "react";
 
 // Create the context
 export const AppContext = createContext();
+export const initialInvoiceData = {
+    title: "New Invoice",
+    billing: {
+      name: "",
+      phone: "",
+      address: ""
+    },
+    shipping: {
+      name: "",
+      phone: "",
+      address: ""
+    },
+    invoice: {
+      number: "",
+      date: "",
+      dueDate: ""
+    },
+    account: {
+      name: "",
+      number: "",
+      ifsacode: ""
+    },
+    company: {
+      name: "",
+      number: "",
+      address: ""
+    },
+    tax: 0,
+    notes: "",
+    items: [
+      {
+        name: "",
+        qty: "",
+        amount: "",
+        description: "",
+        total: 0
+      }
+    ],
+    logo: ""
+  };
+  
 
 // Create the provider component
 export const AppContextProvider = ({ children }) => {
