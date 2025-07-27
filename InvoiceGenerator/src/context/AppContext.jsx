@@ -22,7 +22,7 @@ export const initialInvoiceData = {
     account: {
       name: "",
       number: "",
-      ifsacode: ""
+      branch: ""
     },
     company: {
       name: "",
@@ -48,11 +48,19 @@ export const initialInvoiceData = {
 export const AppContextProvider = ({ children }) => {
   // State for the invoice title
   const [invoiceTitle, setInvoiceTitle] = useState("New Invoice");
+  const [invoiceData, setInvoiceData] = useState(initialInvoiceData);
+  const[selectedTemplate, setSelectedTemplate] = useState("template1");
+
 
   // Context value to be shared
   const contextValue = {
     invoiceTitle,
     setInvoiceTitle,
+    invoiceData,
+    setInvoiceData,
+    selectedTemplate,
+    setSelectedTemplate,
+    initialInvoiceData
   };
 
   return (

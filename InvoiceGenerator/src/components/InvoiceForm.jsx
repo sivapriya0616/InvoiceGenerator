@@ -1,9 +1,12 @@
 import React from 'react'
 import { assets } from '../assets/assets.js'; // Ensure this path is correct
 import { Trash2 } from 'lucide-react';
+import { useContext } from 'react';
 
 
 const InvoiceForm = () => {
+    const{invoiceData,setInvoiceData}=useContext(AppContext);
+
     return (
         <div className="invoiceform container py-4">
             <div className="mb-4">
