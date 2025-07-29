@@ -1,11 +1,27 @@
 import React from 'react'
+import { AppContext } from '../context/AppContext.jsx'; // Ensure the path is correct
+
 import { assets } from '../assets/assets.js'; // Ensure this path is correct
 import { Trash2 } from 'lucide-react';
 import { useContext } from 'react';
 
 
 const InvoiceForm = () => {
-    const{invoiceData,setInvoiceData}=useContext(AppContext);
+    const { invoiceData, setInvoiceData } = useContext(AppContext);
+    const addItem = () => {
+        setInvoiceData((prev) => ({
+            ...prev,
+            items: [...prev.items, { name: "", qty: "", amount: "", description: "", total: 0 }]
+        }));
+
+    }
+    const deleteItem = (index) => {
+        const updatedItems = invoiceData.items.filter((_, i) => i !== index);
+        setInvoiceData((prev) => ({
+            ...prev,
+            items: updatedItems
+        }));
+    }
 
     return (
         <div className="invoiceform container py-4">
@@ -109,35 +125,38 @@ const InvoiceForm = () => {
             </div>
             <div className="mb-4">
                 <h5>Item Details</h5>
-                <div className="card p-3 mb-3">
-                    <div className="row g-3 mb-2">
-                        <div className="col-md-3">
-                            {/* Item Name or similar input */}
-                            <input type="text" className="form-control" placeholder="Item Name" />
-                        </div>
-                        <div className="col-md-3">
-                            {/* Quantity */}
-                            <input type="number" className="form-control" placeholder="Quantity" />
-                        </div>
-                        <div className="col-md-3">
-                            {/* Price */}
-                            <input type="number" className="form-control" placeholder="Price" />
-                        </div>
-                        <div className="col-md-3">
-                            {/* Total (optional, calculated field maybe) */}
-                            <input type="number" className="form-control" placeholder="Total" />
-                        </div>
-                    </div>
-                    <div className="d-flex gap-2">
-                        <textarea className="form-control" placeholder="Description" ></textarea>
-                        <button className="btn btn-outline-danger" type="button">
-                            <Trash2 size={18} />
-                        </button>
+                {invoiceData.items.map((item, index) => (
 
-                        {/* You can place extra controls or actions here */}
+                    <div key={index} className="card p-3 mb-3">
+                        <div className="row g-3 mb-2">
+                            <div className="col-md-3">
+                                {/* Item Name or similar input */}
+                                <input type="text" className="form-control" placeholder="Item Name" />
+                            </div>
+                            <div className="col-md-3">
+                                {/* Quantity */}
+                                <input type="number" className="form-control" placeholder="Quantity" />
+                            </div>
+                            <div className="col-md-3">
+                                {/* Price */}
+                                <input type="number" className="form-control" placeholder="Price" />
+                            </div>
+                            <div className="col-md-3">
+                                {/* Total (optional, calculated field maybe) */}
+                                <input type="number" className="form-control" placeholder="Total" />
+                            </div>
+                        </div>
+                        <div className="d-flex gap-2">
+                            <textarea className="form-control" placeholder="Description" ></textarea>
+                            {invoiceData.items.length > 1 && (<button className="btn btn-outline-danger" onClick={()=>deleteItem(index)} type="button">
+                                <Trash2 size={18} />
+                            </button>)}
+
+                            {/* You can place extra controls or actions here */}
+                        </div>
                     </div>
-                </div>
-                <button className="btn btn-primary" type="button">Add Item</button>
+                ))}
+                <button className="btn btn-primary" type="button" onClick={addItem}>Add Item</button>
 
             </div>
             <div className="mb-4">
