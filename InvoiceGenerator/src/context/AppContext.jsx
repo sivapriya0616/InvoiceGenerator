@@ -26,7 +26,7 @@ export const initialInvoiceData = {
     },
     company: {
       name: "",
-      number: "",
+      phone: "",
       address: ""
     },
     tax: 0,
