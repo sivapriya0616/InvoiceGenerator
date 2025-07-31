@@ -39,7 +39,23 @@ const InvoiceForm = () => {
             }
         }));
     }
-
+    const handleItemChange = (index, field, value)=> {
+        const items = [...invoiceData.items];
+      
+        items[index][field] = value;
+      
+        if (field === "qty" || field === "amount") {
+          const qty = Number(items[index].qty) || 0;
+          const amount = Number(items[index].amount) || 0;
+          items[index].total = qty * amount;
+        }
+      
+        setInvoiceData((prev) => ({
+          ...prev,
+          items,
+        }));
+      };
+      
 
     return (
         <div className="invoiceform container py-4">
