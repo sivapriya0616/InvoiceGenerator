@@ -165,23 +165,23 @@ const InvoiceForm = () => {
                         <div className="row g-3 mb-2">
                             <div className="col-md-3">
                                 {/* Item Name or similar input */}
-                                <input type="text" className="form-control" placeholder="Item Name" />
+                                <input type="text" className="form-control" placeholder="Item Name" value={item.name} onChange={(e)=>handleItemChange(index,name,e.target.value)}/>
                             </div>
                             <div className="col-md-3">
                                 {/* Quantity */}
-                                <input type="number" className="form-control" placeholder="Quantity" />
+                                <input type="number" className="form-control" placeholder="Quantity" value={item.qty} onChange={(e)=>handleItemChange(index,qty,e.target.value)} />
                             </div>
                             <div className="col-md-3">
                                 {/* Price */}
-                                <input type="number" className="form-control" placeholder="Price" />
+                                <input type="number" className="form-control" placeholder="Price" value={item.amount} onChange={(e)=>handleItemChange(index,amount,e.target.value)} />
                             </div>
                             <div className="col-md-3">
                                 {/* Total (optional, calculated field maybe) */}
-                                <input type="number" className="form-control" placeholder="Total" />
+                                <input type="number" className="form-control" placeholder="Total" disabled />
                             </div>
                         </div>
                         <div className="d-flex gap-2">
-                            <textarea className="form-control" placeholder="Description" ></textarea>
+                            <textarea className="form-control" placeholder="Description"  value={item.description} onChange={(e)=>handleItemChange(index,description,e.target.value)}></textarea>
                             {invoiceData.items.length > 1 && (<button className="btn btn-outline-danger" onClick={() => deleteItem(index)} type="button">
                                 <Trash2 size={18} />
                             </button>)}
