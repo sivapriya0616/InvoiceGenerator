@@ -1,32 +1,48 @@
-import React, { useContext } from 'react'; // Add useContext here
-import { AppContext } from '../context/AppContext.jsx';
+import React, { useContext } from 'react';
+import { AppContext } from '../context/AppContext.jsx'; // Ensure the path is correct
 import { Pencil } from 'lucide-react';
 import InvoiceForm from '../components/InvoiceForm.jsx'; // Ensure this path is correct
 import TemplateGrid from '../components/TemplateGrid.jsx'; // Ensure this path is correct
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast notifications
 
 const MainPage = () => {
   const [isEdittingTitle, setIsEdittingTitle] = React.useState(false);
-  const { invoiceTitle, setInvoiceTitle, invoiceData,setinvoiceData } = useContext(AppContext); // Destructure context values
-  const handleTemplateClick=(templateId)=>{
+  const { invoiceTitle, setInvoiceTitle, invoiceData, setinvoiceData, setSelectedTemplate } = useContext(AppContext);
 
-  }
-   const handleTitleChange = (e) => {
+  const handleTemplateClick = (templateId) => {
+    const hasInvalidItem = invoiceData.items.some(
+      (item) => !item.qty || !item.amount
+    );
+
+    if (hasInvalidItem) {
+      toast.error("Please enter quantity and amount for all items.");
+      return;
+    }
+
+    setSelectedTemplate(templateId);
+    console.log("Selected template", { templateId });
+  };
+
+  const handleTitleChange = (e) => {
     const newTitle = e.target.value;
     setInvoiceTitle(newTitle);
-    setinvoiceData((prev)=>({
+    setinvoiceData((prev) => ({
       ...prev,
-      title:newTitle // Update the invoice title in the invoice data
-    }))
-  }
+      title: newTitle, // Update the invoice title in the invoice data
+    }));
+  };
+
   const handleTitleBlur = () => {
     setIsEdittingTitle(false);
-  }
+  };
+
   const handleTitleEdit = () => {
     setIsEdittingTitle(true);
-  }
+  };
 
   return (
-    <div className=" mainpage container-fluid bg-light min-vh-100 py-4">
+    <div className="mainpage container-fluid bg-light min-vh-100 py-4">
       <div className="container">
         <div className="bg-white border rounded shadow-sm p-3 mb-4">
           <div className="d-flex align-items-center">
@@ -36,7 +52,7 @@ const MainPage = () => {
                 className="form-control me-2"
                 autoFocus
                 value={invoiceTitle}
-                onChange={(e) => handleTitleChange(e)}
+                onChange={handleTitleChange}
                 onBlur={handleTitleBlur}
               />
             ) : (
@@ -53,18 +69,11 @@ const MainPage = () => {
           </div>
         </div>
         <div className="row g-4 align-items-stretch">
-          {/* Invoice form */}
-          <div className="col-12 col-lg-6 d-flex">
-            <div className="bg-white border rounded shadow-sm p-4 w-100">
-              <InvoiceForm/>
-            </div>
+          <div className="col-12 col-lg-6">
+            <InvoiceForm />
           </div>
-
-          {/* Template grid */}
-          <div className="col-12 col-lg-6 d-flex">
-            <div className="bg-white border rounded shadow-sm p-4 w-100">
-              <TemplateGrid onTemplateClick={handleTemplateClick} />
-            </div>
+          <div className="col-12 col-lg-6">
+            <TemplateGrid onTemplateClick={handleTemplateClick} />
           </div>
         </div>
       </div>
