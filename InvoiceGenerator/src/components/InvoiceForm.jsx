@@ -3,7 +3,7 @@ import { AppContext } from '../context/AppContext.jsx'; // Ensure the path is co
 
 import { assets } from '../assets/assets.js'; // Ensure this path is correct
 import { Trash2 } from 'lucide-react';
-import { useContext } from 'react';
+import { useContext ,useEffect } from 'react';
 
 
 const InvoiceForm = () => {
@@ -71,7 +71,49 @@ const InvoiceForm = () => {
     // This function calculates the total, tax amount, and grand total based on the items and tax rate
     // You can use this function to display the totals in your form
       
+    const handlLogoUpload = (e)=> {
+        const file = e.target.files[0];
+        if (file) {
+          const reader= new FileReader();
+          reader.onloadend = () => {
+            setInvoiceData((prev) => ({
+              ...prev,
+              logo: reader.result,
+            }))
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+      useEffect(() => {
+        if (!invoiceData.invoice.number) {
+            const now = new Date();
 
+  // Format date with time down to milliseconds: YYYYMMDDHHmmssSSS
+  const datePart = now.getFullYear().toString() +
+    (now.getMonth() + 1).toString().padStart(2, '0') +
+    now.getDate().toString().padStart(2, '0') +
+    now.getHours().toString().padStart(2, '0') +
+    now.getMinutes().toString().padStart(2, '0') +
+    now.getSeconds().toString().padStart(2, '0') +
+    now.getMilliseconds().toString().padStart(3, '0');
+
+  
+  // Generate a random 6-digit number
+  const randomPart = Math.floor(100000 + Math.random() * 900000).toString();
+
+  // Combine prefix, date and random number
+  const InvoiceNumber=`INV-${datePart}-${randomPart}`;
+          const randomNumber = InvoiceNumber;
+          setInvoiceData(prev => ({
+            ...prev,
+            invoice: {
+              ...prev.invoice,
+              number: randomNumber,
+            },
+          }));
+        }
+      }, [invoiceData.invoice.number, setInvoiceData]);
+      
     return (
         <div className="invoiceform container py-4">
             <div className="mb-4">
@@ -79,7 +121,7 @@ const InvoiceForm = () => {
                     <h5>Company Logo</h5>
                     <div className="d-flex align-items-center gap-3">
                         <label htmlFor="image" className="form-label">
-                            <img src={assets.uploadarea} alt="upload" width={78} style={{ cursor: 'pointer' }} />
+                            <img src={invoiceData.logo? invoiceData.logo:assets.uploadarea} alt="upload" width={78} style={{ cursor: 'pointer' }} />
                         </label>
                         <input
                             type="file"
@@ -88,6 +130,7 @@ const InvoiceForm = () => {
                             hidden
                             className="form-control"
                             accept="image/*"
+                            onChange={handlLogoUpload}
                         />
                     </div>
                 </div>
@@ -157,7 +200,7 @@ const InvoiceForm = () => {
                     <div className="col-md-4">
                         <label htmlFor="invoiceNumber" className="form-label">Invoice Number</label>
 
-                        <input type="text" disabled className="form-control" placeholder="Invoice Number" id='invoiceNumber' onChange={(e)=>handleChange("invoice","number",e.target.value)} value={invoiceData.invoice.number} />
+                        <input type="text" disabled className="form-control"  id='invoiceNumber' onChange={(e)=>handleChange("invoice","number",e.target.value)} value={invoiceData.invoice.number} />
                     </div>
                     <div className="col-md-4">
                         <label htmlFor="invoiceDate" className="form-label">Invoice Date</label>
