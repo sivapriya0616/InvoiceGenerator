@@ -113,6 +113,11 @@ const InvoiceForm = () => {
           }));
         }
       }, [invoiceData.invoice.number, setInvoiceData]);
+      const handleSubmit = () => {
+        // Handle form submission logic here
+        console.log("Invoice Data Submitted:", invoiceData);
+        // You can send this data to your server or handle it as needed
+      }
       
     return (
         <div className="invoiceform container py-4">
@@ -235,7 +240,7 @@ const InvoiceForm = () => {
                             </div>
                             <div className="col-md-3">
                                 {/* Total (optional, calculated field maybe) */}
-                                <input type="number" className="form-control" placeholder="Total" disabled />
+                                <input type="number" className="form-control" placeholder="Total" disabled value={item.total} />
                             </div>
                         </div>
                         <div className="d-flex gap-2">
@@ -336,6 +341,7 @@ const InvoiceForm = () => {
 
 
             </div>
+            <button onClick={handleSubmit}>Submit</button>
         </div>
     );
 

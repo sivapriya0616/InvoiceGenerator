@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TemplateGrid = () => {
+const TemplateGrid = ({onTemplateClick}) => {
   return (
     <div>TemplateGrid</div>
   )

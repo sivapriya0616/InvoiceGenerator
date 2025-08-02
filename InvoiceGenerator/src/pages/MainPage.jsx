@@ -6,9 +6,17 @@ import TemplateGrid from '../components/TemplateGrid.jsx'; // Ensure this path i
 
 const MainPage = () => {
   const [isEdittingTitle, setIsEdittingTitle] = React.useState(false);
-  const { invoiceTitle, setInvoiceTitle } = useContext(AppContext); // Destructure context values
+  const { invoiceTitle, setInvoiceTitle, invoiceData,setinvoiceData } = useContext(AppContext); // Destructure context values
+  const handleTemplateClick=(templateId)=>{
+
+  }
    const handleTitleChange = (e) => {
-    setInvoiceTitle(e.target.value);
+    const newTitle = e.target.value;
+    setInvoiceTitle(newTitle);
+    setinvoiceData((prev)=>({
+      ...prev,
+      title:newTitle // Update the invoice title in the invoice data
+    }))
   }
   const handleTitleBlur = () => {
     setIsEdittingTitle(false);
@@ -55,7 +63,7 @@ const MainPage = () => {
           {/* Template grid */}
           <div className="col-12 col-lg-6 d-flex">
             <div className="bg-white border rounded shadow-sm p-4 w-100">
-              <TemplateGrid />
+              <TemplateGrid onTemplateClick={handleTemplateClick} />
             </div>
           </div>
         </div>
