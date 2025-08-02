@@ -57,7 +57,7 @@ const PreviewPage = () => {
       {/* Display the invoice preview */}
 <div className="flex-grow-1 overflow-auto d-flex justify-content-center align-items-start bg-light py-3">
   <div ref={previewRef} className="invoice-preview">
-    Display the PDF preview here 
+    <InvoicePreview invoiceData={invoiceData} template={selectedTemplate} />
   </div>
 </div>
 

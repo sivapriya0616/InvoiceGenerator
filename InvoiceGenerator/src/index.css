@@ -20,10 +20,10 @@
   box-shadow: none;
   
 }
-.previewpage.invoice-preview{
+.previewpage .invoice-preview{
   width: 794px;
   height: 1123px;
-  background-color: #9e6c6c;
+  background-color: #fff;
   box-shadow:0 0 8px rgba(0, 0, 0, 0.15);
   margin: 0;
   padding: 0;
