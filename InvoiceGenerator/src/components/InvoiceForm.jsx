@@ -55,17 +55,21 @@ const InvoiceForm = () => {
           items,
         }));
       };
-      const calculateTotal = () => {
-        return invoiceData.items.reduce((total, item) => {
-            return total + (Number(item.qty) || 0) * (Number(item.amount) || 0);
-        }, 0);
-    }
-    const calculateTaxAmount = () => {
-        return (calculateTotal() * (invoiceData.tax / 100)).toFixed(2);
-    }
-    const calculateGrandTotal = () => {
-        return (calculateTotal() + parseFloat(calculateTaxAmount())).toFixed(2);
-    }
+      const calculateTotal = ()=> {
+        const subtotal = invoiceData.items.reduce((sum, item) => sum + (item.total || 0), 0);
+      
+        const taxRate = Number(invoiceData.tax || 0);
+      
+        const taxAmount = (subtotal * taxRate) / 100;
+      
+        const grandTotal = subtotal + taxAmount;
+      
+        return { subtotal, taxAmount, grandTotal };
+      };
+      
+     const {subtotal, taxAmount, grandTotal} = calculateTotal();
+    // This function calculates the total, tax amount, and grand total based on the items and tax rate
+    // You can use this function to display the totals in your form
       
 
     return (
@@ -248,7 +252,7 @@ const InvoiceForm = () => {
                         <div className="w-100 w-md-50">
                             <div className="d-flex justify-content-between ">
                                 <span>Subtotal:</span>
-                                <span>LKR {1000.00}</span>
+                                <span>LKR {subtotal.toFixed(2)}</span>
                             </div>
                             <div className="d-flex justify-content-between align-items-center my-2">
                                 <label htmlFor="tax" className="me-2">Tax(%):</label>
@@ -256,20 +260,20 @@ const InvoiceForm = () => {
                                     type="number"
                                     className="form-control w-50 text-end"
                                     id="tax"
-                                    placeholder="2%" />
+                                    placeholder="2%" 
                                     value={invoiceData.tax}
                                     onChange={(e) => setInvoiceData((prev) => ({
                                         ...prev,
                                         tax: e.target.value
-                                    }))}
+                                    }))}/>
                             </div>
                             <div className="d-flex justify-content-between fw-bold">
                                 <span>Tax Amount</span>
-                                <span>LKR {1000.00}</span>
+                                <span>LKR {taxAmount.toFixed(2)}</span>
                             </div>
                             <div className="d-flex justify-content-between fw-bold mt-2">
                                 <span>Total</span>
-                                <span>LKR {1000.00}</span>
+                                <span>LKR {grandTotal.toFixed(2)}</span>
                             </div>
 
                         </div>
