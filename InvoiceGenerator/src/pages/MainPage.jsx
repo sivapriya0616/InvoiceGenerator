@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext.jsx'; // Ensure the path is correct
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+
 import { Pencil } from 'lucide-react';
 import InvoiceForm from '../components/InvoiceForm.jsx'; // Ensure this path is correct
 import TemplateGrid from '../components/TemplateGrid.jsx'; // Ensure this path is correct
@@ -9,6 +11,8 @@ import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast notifica
 const MainPage = () => {
   const [isEdittingTitle, setIsEdittingTitle] = React.useState(false);
   const { invoiceTitle, setInvoiceTitle, invoiceData, setinvoiceData, setSelectedTemplate } = useContext(AppContext);
+  const navigate = useNavigate(); // Corrected useNavigate initialization
+
 
   const handleTemplateClick = (templateId) => {
     const hasInvalidItem = invoiceData.items.some(
@@ -21,7 +25,8 @@ const MainPage = () => {
     }
 
     setSelectedTemplate(templateId);
-    console.log("Selected template", { templateId });
+    // console.log("Selected template", { templateId });
+    navigate('/preview');
   };
 
   const handleTitleChange = (e) => {
