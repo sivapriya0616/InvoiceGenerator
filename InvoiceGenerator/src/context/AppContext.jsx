@@ -49,7 +49,7 @@ export const AppContextProvider = ({ children }) => {
   // State for the invoice title
   const [invoiceTitle, setInvoiceTitle] = useState("New Invoice");
   const [invoiceData, setInvoiceData] = useState(initialInvoiceData);
-  const[selectedTemplate, setSelectedTemplate] = useState("template1");
+  const[selectedTemplate, setSelectedTemplate] = useState("Template1");
 
 
   // Context value to be shared

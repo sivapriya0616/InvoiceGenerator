@@ -25,7 +25,7 @@ const MainPage = () => {
     }
 
     setSelectedTemplate(templateId);
-    // console.log("Selected template", { templateId });
+    console.log("Selected template", { templateId });
     navigate('/preview');
   };
 

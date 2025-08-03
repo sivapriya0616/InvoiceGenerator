@@ -1,9 +1,9 @@
 import React from 'react'
-import './Template1.css' // Import the CSS file for Template1 styles;
+import '../Templates.css'
 
 const Template1 = ({ data }) => {
     return (
-        <div className="template1 border rounded mx-auto my-4 px-sm-4 py-3 w-100">
+        <div className="template-1 border rounded mx-auto my-4 px-sm-4 py-3 w-100">
             {/* Header section */}
             <div className="row mb-4">
                 <div className="col-md-6 mb-3 mb-md-0">
@@ -12,13 +12,13 @@ const Template1 = ({ data }) => {
                             <img src={data.companyLogo} alt="Company logo" width={98} />
                         </div>
                     )}
-                    <h2 className="mb-1 company-title">{data.companyName}</h2>
+                    <h2 className="mb-1 company-title-1">{data.companyName}</h2>
                     <p className="mb-1">{data.companyAddress}</p>
                     <p className="mb-0">Phone: {data.companyPhone}</p>
                 </div>
 
                 <div className="col-md-6 text-start text-md-end">
-                    <h1 className="mb-2 invoice-title">Invoice</h1>
+                    <h1 className="mb-2 invoice-title-1">Invoice</h1>
                     <div className="d-flex flex-column flex-md-row justify-content-md-end gap-2 gap-md-4">
                         <div className="w-100 w-md-50 mb-3 mb-md-0">
                             <p className='mb-1'>
@@ -30,20 +30,18 @@ const Template1 = ({ data }) => {
                             <p className='mb-1'>
                                 <strong>Due Date:</strong> {data.paymentDate}
                             </p>
-                            {/* Additional invoice details can go here, like Invoice No or Date */}
                         </div>
                     </div>
                 </div>
             </div>
-            <hr className="my-3 orange-border" />
-
+            <hr className="my-3 orange-border-1" />
 
             {/* Billing section */}
             <div className="row g-3 mb-4">
                 {data.shippingName && data.shippingPhone && data.shippingAddress && (
                     <div className="col-md-6">
-                        <div className="p-3 rounded h-100 billing-box">
-                            <h3 className="mb-2 billing-title">Shipped To</h3>
+                        <div className="p-3 rounded h-100 billing-box-1">
+                            <h3 className="mb-2 billing-title-1">Shipped To</h3>
                             <p className="mb-1">
                                 <strong>{data.shippingName}</strong>
                             </p>
@@ -53,8 +51,8 @@ const Template1 = ({ data }) => {
                     </div>
                 )}
                 <div className="col-md-6">
-                    <div className="p-3 rounded h-100 billing-box">
-                        <h3 className="mb-2 billing-title">Billed To</h3>
+                    <div className="p-3 rounded h-100 billing-box-1">
+                        <h3 className="mb-2 billing-title-1">Billed To</h3>
                         <p className="mb-1">
                             <strong>{data.billingName}</strong>
                         </p>
@@ -63,7 +61,7 @@ const Template1 = ({ data }) => {
                     </div>
                 </div>
             </div>
-            <hr className="my-3 orange-border" />
+            <hr className="my-3 orange-border-1" />
 
             {/* Items section */}
             <div className="mb-4">
@@ -71,10 +69,10 @@ const Template1 = ({ data }) => {
                     <table className="table table-bordered">
                         <thead>
                             <tr>
-                                <th className="p-2 table-header">Item description</th>
-                                <th className="p-2 text-center table-header">Qty.</th>
-                                <th className="p-2 text-end table-header">Rate</th>
-                                <th className="p-2 text-end table-header">Amount</th>
+                                <th className="p-2 table-header-1">Item description</th>
+                                <th className="p-2 text-center table-header-1">Qty.</th>
+                                <th className="p-2 text-end table-header-1">Rate</th>
+                                <th className="p-2 text-end table-header-1">Amount</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -91,20 +89,14 @@ const Template1 = ({ data }) => {
                                 </tr>
                             ))}
                         </tbody>
-
-
-                        {/* You can add tbody here with table rows */}
                     </table>
                 </div>
             </div>
 
-
-
             {/* Totals section */}
-
             <div className="mb-4">
                 <div className="d-flex justify-content-end">
-                    <div className="p-3 w-100 totals-box" style={{ maxWidth: "300px" }}>
+                    <div className="p-3 w-100 totals-box-1" style={{ maxWidth: "300px" }}>
                         <div className="d-flex justify-content-between mb-2">
                             <span>Sub Total: </span>
                             <span>{data.subtotal.toFixed(2)}</span>
@@ -116,54 +108,49 @@ const Template1 = ({ data }) => {
                             </div>
                         )}
 
-                        <div className="d-flex justify-content-between fw-bold total-highlight">
+                        <div className="d-flex justify-content-between fw-bold total-highlight-1">
                             <span>Total:</span>
                             <span>LKR{data.total.toFixed(2)}</span>
                         </div>
-
                     </div>
                 </div>
             </div>
 
             {/* Bank account section */}
-            {(data.accountName || data.accountNumber || data.accountIfscCode) && (
-  <div className="mt-4">
-    <h3 className="mb-2 billing-title">Bank Account Details</h3>
+            {(data.accountName || data.accountNumber || data.accountBranch) && (
+                <div className="mt-4">
+                    <h3 className="mb-2 billing-title-1">Bank Account Details</h3>
 
-    {data.accountName && (
-      <p className="mb-1">
-        <strong>Account Holder: </strong> {data.accountName}
-      </p>
-    )}
+                    {data.accountName && (
+                        <p className="mb-1">
+                            <strong>Account Holder: </strong> {data.accountName}
+                        </p>
+                    )}
 
-    {data.accountNumber && (
-      <p className="mb-1">
-        <strong>Account Number: </strong> {data.accountNumber}
-      </p>
-    )}
+                    {data.accountNumber && (
+                        <p className="mb-1">
+                            <strong>Account Number: </strong> {data.accountNumber}
+                        </p>
+                    )}
 
-    {data.accountBranch && (
-      <p className="mb-0">
-        <strong>Branch </strong> {data.branch}
-      </p>
-    )}
-
-  </div>
-)}
-
+                    {data.accountBranch && (
+                        <p className="mb-0">
+                            <strong>Branch </strong> {data.accountBranch}
+                        </p>
+                    )}
+                </div>
+            )}
 
             {/* Notes section */}
             {data.notes && (
                 <div className="mt-4">
-                    <h3 className="mb-2 billing-title">Notes</h3>
+                    <h3 className="mb-2 billing-title-1">Notes</h3>
                     <p className='mb-0'>{data.notes}</p>
                 </div>
             )}
-
             {/* Footer section */}
         </div>
-
     )
-}
+};
 
-export default Template1
+export default Template1;

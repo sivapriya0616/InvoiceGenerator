@@ -29,3 +29,171 @@
   padding: 0;
   overflow: hidden;
 }
+
+/* Shared styles */
+.w-800 {
+  max-width: 800px;
+}
+
+.billing-box,
+.billing-box2,
+.billing-box3,
+.billing-box4,
+.billing-box5 {
+  background-color: #fff7ed;
+}
+
+.totals-box,
+.totals-box2,
+.totals-box3,
+.totals-box4,
+.totals-box5 {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #fff7ed;
+}
+
+/* -------- Template 1: Orange -------- */
+.company-title,
+.template1 .company-title,
+.template1 .company-title i,
+.total-highlight {
+  color: #ea580c;
+}
+.company-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.invoice-title {
+  color: #ea580c;
+  font-size: 25px;
+  font-weight: bold;
+}
+.billing-title {
+  color: #ea580c;
+  font-size: 16px;
+  font-weight: bold;
+}
+.orange-border {
+  border-color: #ea580c !important;
+}
+.table-header {
+  background-color: #ea580c !important;
+  color: white !important;
+}
+
+/* -------- Template 2: Blue -------- */
+.company-title2,
+.template2 .company-title2,
+.template2 .company-title2 i,
+.total-highlight2 {
+  color: #3adad7;
+}
+.company-title2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.invoice-title2 {
+  color: #3adad7;
+  font-size: 25px;
+  font-weight: bold;
+}
+.billing-title2 {
+  color: #3adad7;
+  font-size: 16px;
+  font-weight: bold;
+}
+.blue-border {
+  border-color: #3adad7 !important;
+}
+.table-header2 {
+  background-color: #3adad7 !important;
+  color: white !important;
+}
+
+/* -------- Template 3: Green -------- */
+.company-title3,
+.template3 .company-title3,
+.template3 .company-title3 i,
+.total-highlight3 {
+  color: hsla(133, 66%, 45%, 0.92);
+}
+.company-title3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.invoice-title3 {
+  color: hsla(133, 66%, 45%, 0.92);
+  font-size: 25px;
+  font-weight: bold;
+}
+.billing-title3 {
+  color: hsla(133, 66%, 45%, 0.92);
+  font-size: 16px;
+  font-weight: bold;
+}
+.green-border3 {
+  border-color: hsla(133, 66%, 45%, 0.92) !important;
+}
+.table-header3 {
+  background-color: hsla(133, 66%, 45%, 0.92) !important;
+  color: white !important;
+}
+
+/* -------- Template 4: Purple -------- */
+.company-title4,
+.template4 .company-title4,
+.template4 .company-title4 i,
+.total-highlight4 {
+  color: hsla(273, 66%, 45%, 0.92);
+}
+.company-title4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.invoice-title4 {
+  color: hsla(273, 66%, 45%, 0.92);
+  font-size: 25px;
+  font-weight: bold;
+}
+.billing-title4 {
+  color: hsla(273, 66%, 45%, 0.92);
+  font-size: 16px;
+  font-weight: bold;
+}
+.purple-border4 {
+  border-color: hsla(273, 66%, 45%, 0.92) !important;
+}
+.table-header4 {
+  background-color: hsla(273, 66%, 45%, 0.92) !important;
+  color: white !important;
+}
+
+/* -------- Template 5: Red -------- */
+.company-title5,
+.template5 .company-title5,
+.template5 .company-title5 i,
+.total-highlight5 {
+  color: hsla(0, 78%, 43%, 0.92);
+}
+.company-title5 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.invoice-title5 {
+  color: hsla(0, 78%, 43%, 0.92);
+  font-size: 25px;
+  font-weight: bold;
+}
+.billing-title5 {
+  color: hsla(0, 78%, 43%, 0.92);
+  font-size: 16px;
+  font-weight: bold;
+}
+.red-border5 {
+  border-color: hsla(0, 78%, 43%, 0.92) !important;
+}
+.table-header5 {
+  background-color: hsla(0, 78%, 43%, 0.92) !important;
+  color: white !important;
+}

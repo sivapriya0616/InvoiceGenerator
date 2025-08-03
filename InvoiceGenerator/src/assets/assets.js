@@ -1,6 +1,7 @@
-import logo from './logo.jpeg';
-import landing1 from './landing1.jpeg';
-import landing2 from './landing2.jpeg';
+// Import assets
+import logo from './logo.jpeg'; // Ensure this file exists
+import landing1 from './landing1.jpeg'; // Ensure this file exists
+import landing2 from './landing2.jpeg'; // Ensure this file exists
 import landing3 from './landing3.jpeg';
 import landing4 from './landing4.jpeg';
 import uploadarea from './uploadarea.jpeg';
@@ -27,9 +28,9 @@ export const assets = {
 
 // Define and export the templates array
 export const templates = [
-    { id: 1, label: 'Template 1', image: Template1 },
-    { id: 2, label: 'Template 2', image: Template2 },
-    { id: 3, label: 'Template 3', image: Template3 },
-    { id: 4, label: 'Template 4', image: Template4 },
-    { id: 5, label: 'Template 5', image: Template5 },
+    { id: "Template1", label: "Template 1", image: Template1 },
+    { id: "Template2", label: "Template 2", image: Template2 },
+    { id: "Template3", label: "Template 3", image: Template3 },
+    { id: "Template4", label: "Template 4", image: Template4 },
+    { id: "Template5", label: "Template 5", image: Template5 },
 ];

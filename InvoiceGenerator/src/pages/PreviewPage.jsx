@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { templates } from "../assets/assets.js";
 import { AppContext } from "../context/AppContext.jsx"; // Import AppContext to access shared state
 import InvoicePreview from "../components/InvoicePreview.jsx"; // Import InvoicePreview component
@@ -6,6 +6,7 @@ import InvoicePreview from "../components/InvoicePreview.jsx"; // Import Invoice
 import "../index.css"; // Import index.css for global styles
 
 const PreviewPage = () => {
+
   const previewRef = useRef();
   const { selectedTemplate, setSelectedTemplate, invoiceData } = useContext(AppContext); 
   // Make sure setSelectedTemplate and invoiceData are provided by AppContext
@@ -21,7 +22,7 @@ const PreviewPage = () => {
               key={id}
               style={{ minHeight: "38px", minWidth: "100px" }}
               className={`btn btn-sm rounded-pill p-2 ${selectedTemplate === id ? "btn-primary" : "btn-outline-secondary"}`}
-              onClick={() => setSelectedTemplate && setSelectedTemplate(id)}
+              onClick={() => setSelectedTemplate(id)}
             >
               {label}
             </button>
@@ -50,8 +51,13 @@ const PreviewPage = () => {
       {/* Display the invoice preview */}
       <div className="flex-grow-1 overflow-auto d-flex justify-content-center align-items-start bg-light py-3">
         <div ref={previewRef} className="invoice-preview">
-          <InvoicePreview invoiceData={invoiceData} template={selectedTemplate} />
-        </div>
+          <div ref={previewRef} className="invoice-preview">
+    {console.log("Selected template:", selectedTemplate)}
+    <InvoicePreview invoiceData={invoiceData} template={selectedTemplate} />
+</div>
+          {/* <InvoicePreview invoiceData={invoiceData} template={selectedTemplate} /> */}
+          {/* console.log("Selected template:", selectedTemplate);  */}
+          </div>
       </div>
     </div>
   );
