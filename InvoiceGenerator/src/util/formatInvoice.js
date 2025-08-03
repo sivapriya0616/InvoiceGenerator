@@ -35,7 +35,7 @@ export const formatInvoiceData = (invoiceData)=> {
   paymentDate: invoice?.dueDate || "",
   accountName: account?.name || "",
   accountNumber: account?.number || "",
-  accountIfscCode: account?.ifsccode || "",
+  accountBranch: account?.branch || "",
   billingName: billing?.name || "",
   billingAddress: billing?.address || "",
   billingPhone: billing?.phone || "",

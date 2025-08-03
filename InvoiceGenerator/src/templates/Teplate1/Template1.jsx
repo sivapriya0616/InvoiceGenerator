@@ -77,7 +77,22 @@ const Template1 = ({ data }) => {
                                 <th className="p-2 text-end table-header">Amount</th>
                             </tr>
                         </thead>
-                        
+                        <tbody>
+                            {data.items.map((item, index) => (
+                                <tr key={index}>
+                                    <td className="p-2">{item.name}</td>
+                                    <td className="p-2 text-center">{item.qty}</td>
+                                    <td className="p-2 text-end">
+                                        LKR{item.amount?.toFixed(2)}
+                                    </td>
+                                    <td className="p-2 text-end">
+                                        LKR{(item.qty * item.amount).toFixed(2)}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+
+
                         {/* You can add tbody here with table rows */}
                     </table>
                 </div>
@@ -87,7 +102,31 @@ const Template1 = ({ data }) => {
 
             {/* Totals section */}
 
+            <div className="mb-4">
+                <div className="d-flex justify-content-end">
+                    <div className="p-3 w-100 totals-box" style={{ maxWidth: "300px" }}>
+                        <div className="d-flex justify-content-between mb-2">
+                            <span>Sub Total: </span>
+                            <span>{data.subtotal.toFixed(2)}</span>
+                        </div>
+                        {data.tax > 0 && (
+                            <div className="d-flex justify-content-between mb-2">
+                                <span>Tax ({data.tax}%):</span>
+                                <span>LKR{data.taxAmount.toFixed(2)}</span>
+                            </div>
+                        )}
+
+                        <div className="d-flex justify-content-between fw-bold total-highlight">
+                            <span>Total:</span>
+                            <span>LKR{data.total.toFixed(2)}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
             {/* Bank account section */}
+            
 
             {/* Notes section */}
         </div>
