@@ -1,7 +1,7 @@
 import React from 'react'
-import './Template1.css' // Import the CSS file for Template1 styles;
+import './Template5.css' // Import the CSS file for Template1 styles;
 
-const Template1 = ({ data }) => {
+const Template5 = ({ data }) => {
     return (
         <div className="template1 border rounded mx-auto my-4 px-sm-4 py-3 w-100">
             {/* Header section */}
@@ -71,7 +71,7 @@ const Template1 = ({ data }) => {
                     <table className="table table-bordered">
                         <thead>
                             <tr>
-                                <th className="p-2 table-header">Item #/Item description</th>
+                                <th className="p-2 table-header">Item description</th>
                                 <th className="p-2 text-center table-header">Qty.</th>
                                 <th className="p-2 text-end table-header">Rate</th>
                                 <th className="p-2 text-end table-header">Amount</th>
@@ -83,10 +83,10 @@ const Template1 = ({ data }) => {
                                     <td className="p-2">{item.name}</td>
                                     <td className="p-2 text-center">{item.qty}</td>
                                     <td className="p-2 text-end">
-                                        LKR{item.amount?.toFixed(2)}
+                                        LKR{Number(item.amount)?.toFixed(2)}
                                     </td>
                                     <td className="p-2 text-end">
-                                        LKR{(item.qty * item.amount).toFixed(2)}
+                                        LKR{(Number(item.qty) * Number(item.amount)).toFixed(2)}
                                     </td>
                                 </tr>
                             ))}
@@ -126,9 +126,41 @@ const Template1 = ({ data }) => {
             </div>
 
             {/* Bank account section */}
-            
+            {(data.accountName || data.accountNumber || data.accountIfscCode) && (
+  <div className="mt-4">
+    <h3 className="mb-2 billing-title">Bank Account Details</h3>
+
+    {data.accountName && (
+      <p className="mb-1">
+        <strong>Account Holder: </strong> {data.accountName}
+      </p>
+    )}
+
+    {data.accountNumber && (
+      <p className="mb-1">
+        <strong>Account Number: </strong> {data.accountNumber}
+      </p>
+    )}
+
+    {data.accountBranch && (
+      <p className="mb-0">
+        <strong>Branch </strong> {data.branch}
+      </p>
+    )}
+
+  </div>
+)}
+
 
             {/* Notes section */}
+            {data.notes && (
+                <div className="mt-4">
+                    <h3 className="mb-2 billing-title">Notes</h3>
+                    <p className='mb-0'>{data.notes}</p>
+                </div>
+            )}
+
+            {/* Footer section */}
         </div>
 
     )
