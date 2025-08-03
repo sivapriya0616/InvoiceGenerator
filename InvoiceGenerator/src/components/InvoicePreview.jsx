@@ -1,13 +1,14 @@
 import React, { forwardRef } from "react";
 import { formatInvoiceData } from "../util/formatInvoice";
-import Template1 from "../templates/Template1/Template1";
+import {templateComponents} from "../util/invoicetemplates.js";
 const InvoicePreview = forwardRef(({ invoiceData, template }, ref) => {
     const formattedData = formatInvoiceData(invoiceData);
+    const selectedTemplate= templateComponents[template] || templateComponents['Template1'];
 
     return (
         <div ref={ref} className="invoice-preview container px-2 py-2 overflow-x-auto">
+            <selectedTemplate data={formattedData} />
             {/* Render the PDF content here using invoiceData and template */}
-            <Template1 data={formattedData} />      {/* Add more invoice details as needed */}
         </div>
     );
 });

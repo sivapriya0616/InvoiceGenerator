@@ -3,7 +3,7 @@ import './Template4.css' // Import the CSS file for Template1 styles;
 
 const Template4 = ({ data }) => {
     return (
-        <div className="template1 border rounded mx-auto my-4 px-sm-4 py-3 w-100">
+        <div className="template4 border rounded mx-auto my-4 px-sm-4 py-3 w-100">
             {/* Header section */}
             <div className="row mb-4">
                 <div className="col-md-6 mb-3 mb-md-0">
@@ -166,4 +166,4 @@ const Template4 = ({ data }) => {
     )
 }
 
-export default Template1
+export default Template4
