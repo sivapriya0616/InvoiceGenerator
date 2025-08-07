@@ -2,14 +2,39 @@ import React, { useContext, useRef, useState } from "react";
 import { templates } from "../assets/assets.js";
 import { AppContext } from "../context/AppContext.jsx"; // Import AppContext to access shared state
 import InvoicePreview from "../components/InvoicePreview.jsx"; // Import InvoicePreview component
+import { saveInvoice } from "../service/invoiceService.js"; // Import saveInvoice function to handle saving invoices
+import { toast } from 'react-toastify';
+
 
 import "../index.css"; // Import index.css for global styles
 
 const PreviewPage = () => {
 
   const previewRef = useRef();
-  const { selectedTemplate, setSelectedTemplate, invoiceData } = useContext(AppContext); 
+  const { selectedTemplate, setSelectedTemplate, invoiceData,baseURL } = useContext(AppContext); 
+  const[loading, setLoading] = useState(false); // State to manage loading state
   // Make sure setSelectedTemplate and invoiceData are provided by AppContext
+  const handleSaveAndExit=async()=>{
+    try{
+
+  setLoading(true);
+//TODO: create thumbnail url
+const payLoad = {
+  ...invoiceData,
+  template: selectedTemplate,
+}
+const response=await saveInvoice(baseURL, payLoad);
+if (response.status === 200) {
+  toast.success('Invoice saved successfully');
+  
+}
+    // Optionally, you can reset the invoiceData or redirect the user
+  }catch(error){
+
+    }
+
+
+  }
 
   return (
     <div className="previewpage container-fluid d-flex flex-column p-3 min-vh-100">
