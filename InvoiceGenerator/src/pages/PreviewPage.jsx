@@ -4,11 +4,14 @@ import { AppContext } from "../context/AppContext.jsx"; // Import AppContext to 
 import InvoicePreview from "../components/InvoicePreview.jsx"; // Import InvoicePreview component
 import { saveInvoice } from "../service/invoiceService.js"; // Import saveInvoice function to handle saving invoices
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 import "../index.css"; // Import index.css for global styles
+import { Loader2 } from "lucide-react";
 
 const PreviewPage = () => {
+  const navigate = useNavigate();
 
   const previewRef = useRef();
   const { selectedTemplate, setSelectedTemplate, invoiceData,baseURL } = useContext(AppContext); 
@@ -26,11 +29,17 @@ const payLoad = {
 const response=await saveInvoice(baseURL, payLoad);
 if (response.status === 200) {
   toast.success('Invoice saved successfully');
+  navigate('/dashboard'); // Redirect to dashboard after saving
   
-}
+}else{
+toast.error('Failed to save invoice',);}
     // Optionally, you can reset the invoiceData or redirect the user
   }catch(error){
+    console.error("Error saving invoice:", error);
+    toast.error('Failed to save invoice',error.message);
 
+    }finally{
+      setLoading(false); // Reset loading state
     }
 
 
@@ -56,8 +65,9 @@ if (response.status === 200) {
 
         {/* Example action buttons */}
         <div className="d-flex gap-2 flex-wrap justify-content-center">
-          <button className="btn btn-primary d-flex align-items-center justify-content-center">
-            Save and Exit
+          <button className="btn btn-primary d-flex align-items-center justify-content-center" onClick={handleSaveAndExit} disabled={loading}>
+            {loading &&<Loader2 className="me-2 spin-animation" size={18}/>}
+            {loading ? "Saving..." : "Save and Exit"}
           </button>
           <button className="btn btn-danger">
             Delete Invoice
