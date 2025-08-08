@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from "react";
 import { templates } from "../assets/assets.js";
 import { AppContext } from "../context/AppContext.jsx"; // Import AppContext to access shared state
 import InvoicePreview from "../components/InvoicePreview.jsx"; // Import InvoicePreview component
-import { saveInvoice } from "../service/invoiceService.js"; // Import saveInvoice function to handle saving invoices
+import { saveInvoice } from "../service/invoicesevice.js"; // Import saveInvoice function to handle saving invoices
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
