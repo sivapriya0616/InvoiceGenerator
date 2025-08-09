@@ -5,13 +5,17 @@ import toast from "react-hot-toast";
 import { AppContext } from "../context/AppContext";  // Adjust import path
 import { Plus } from "lucide-react";  // Adjust import path
 import "../index.css";  // Import global styles
-import { formToJSON } from "axios";
+// import { formToJSON } from "axios";
 import { formatDate } from "../util/formatInvoice";
+import { getAllInvoices } from "../service/invoicesevice.js"; // Correctly import the function
+import { useNavigate } from "react-router-dom"; // 1. Import useNavigate
+
+
 
 const Dashboard = () => {
   const [invoices, setInvoices] = useState([]);
-  const { baseURL } = useContext(AppContext);
-
+  const { baseURL,setInvoicedata,setSelectedTemplate,setInvoiceTitle } = useContext(AppContext);
+const navigate = useNavigate(); // Import useNavigate for navigation
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
@@ -24,7 +28,13 @@ const Dashboard = () => {
 
     fetchInvoices();
   }, [baseURL]);
-
+  const handleViewClick = (invoice) => {
+    setInvoiceData(invoice);
+    setSelectedTemplate(invoice.template || "template1");
+    setInvoiceTitle(invoice.title || "New Invoice");
+    navigate("/preview");
+  };
+   
   return (
     <div>
       <div className="container py-5">
@@ -38,11 +48,11 @@ const Dashboard = () => {
             </div>
           </div>
           {/* Render the existing invoices  */}
-          {invoices.map((invoice, idx) => (
+          {/* {invoices.map((invoice, idx) => (
             <div className="col" key={idx}>
               <div className="card h-100 shadow-sm cursor-pointer" style={{ minHeight: '270px' }}>
                 {invoice.thumbnailurl && (
-                  <img src={invoice.thumbnailurl} className="card-img-top" style={{ height: '200px', objectFit: "cover" }} />
+                  <img src={invoice.thumbnailUrl} className="card-img-top" style={{ height: '200px', objectFit: "cover" }} />
                 )}
                 <div className="card-body">
                   <h6 className="card-title mb-1">{invoice.title}</h6>
@@ -53,8 +63,26 @@ const Dashboard = () => {
 
               </div>
             </div>
-          ))}
+          ))} */}
 
+          {/* Render the existing invoices  */}
+          {invoices.map((invoice, idx) => (
+            <div className="col" key={idx}>
+              <div className="card h-100 shadow-sm cursor-pointer" style={{ minHeight: '270px' }}>
+                {/* Corrected property name to 'thumbnailUrl' */}
+                {invoice.thumbnailurl && (
+                  <img src={invoice.thumbnailurl} className="card-img-top" style={{ height: '200px', objectFit: "cover" }} alt={`Invoice for ${invoice.title}`} />
+                )}
+                {/* Removed the invalid console.log from the JSX tree */}
+                <div className="card-body">
+                  <h6 className="card-title mb-1">{invoice.title}</h6>
+                  <small className="text-muted">
+                    Last Updated: {formatDate(invoice.lastUpdatedAt)}
+                  </small>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
       </div>
