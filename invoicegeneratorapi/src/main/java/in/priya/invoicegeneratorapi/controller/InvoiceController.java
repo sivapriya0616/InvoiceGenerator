@@ -26,6 +26,9 @@ package in.priya.invoicegeneratorapi.controller;
 import in.priya.invoicegeneratorapi.entity.Invoice;
 import in.priya.invoicegeneratorapi.service.InvoiceService;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.slf4j.Logger; // 1. Import the Logger
 import org.slf4j.LoggerFactory; // 2. Import the LoggerFactory
 import org.springframework.http.ResponseEntity;
@@ -54,5 +57,12 @@ public class InvoiceController {
         logger.info("Successfully saved invoice with ID: {}", savedInvoice.getId());
 
         return ResponseEntity.ok(savedInvoice);
+
     }
+@GetMapping
+public ResponseEntity<List<Invoice>> fetchInvoices() {
+    return ResponseEntity.ok(invoiceService.fetchInvoices());
+}
+    
+
 }

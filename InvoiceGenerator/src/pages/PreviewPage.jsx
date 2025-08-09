@@ -97,10 +97,10 @@ toast.error('Failed to save invoice',);}
       {/* Display the invoice preview */}
       <div className="flex-grow-1 overflow-auto d-flex justify-content-center align-items-start bg-light py-3">
         <div ref={previewRef} className="invoice-preview">
-          <div ref={previewRef} className="invoice-preview">
+          {/* <div ref={previewRef} className="invoice-preview"> */}
     {console.log("Selected template:", selectedTemplate)}
     <InvoicePreview invoiceData={invoiceData} template={selectedTemplate} />
-</div>
+{/* </div> */}
           {/* <InvoicePreview invoiceData={invoiceData} template={selectedTemplate} /> */}
           {/* console.log("Selected template:", selectedTemplate);  */}
           </div>
