@@ -24,13 +24,13 @@ public class Invoice {
     private String notes;
     private String logo;
     private double tax;
+    private String thumbnailurl;
 
     @CreatedDate
     private Instant createdAt;
 
     @LastModifiedDate
     private Instant lastUpdatedAt;
-    private String thumbnailUrl; 
     private String template;
     private String title;
 

@@ -3,8 +3,11 @@ import { templates } from "../assets/assets.js";
 import { AppContext } from "../context/AppContext.jsx"; // Import AppContext to access shared state
 import InvoicePreview from "../components/InvoicePreview.jsx"; // Import InvoicePreview component
 import { saveInvoice } from "../service/invoicesevice.js"; // Import saveInvoice function to handle saving invoices
+import { uploadInvoiceThumbnail } from "../service/cloudinarySErvice.js"; // Import uploadInvoiceThumbnail function to handle thumbnail uploads
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import html2canvas from 'html2canvas'; // <-- Add this import statement
+
 
 
 import "../index.css"; // Import index.css for global styles
@@ -31,7 +34,7 @@ const PreviewPage = () => {
 //TODO: create thumbnail url
 const payLoad = {
   ...invoiceData,
-  thumbnailURL,
+  thumbnailurl:thumbnailURL,
   template: selectedTemplate,
 }
 const response=await saveInvoice(baseURL, payLoad);
