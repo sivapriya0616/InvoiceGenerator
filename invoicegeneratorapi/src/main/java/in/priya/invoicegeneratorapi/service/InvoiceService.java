@@ -18,4 +18,5 @@ public class InvoiceService {
     public List<Invoice> fetchInvoices  () {
         return invoiceRepository.findAll();
     }
+    
 }

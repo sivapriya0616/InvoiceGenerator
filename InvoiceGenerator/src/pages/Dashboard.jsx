@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom"; // 1. Import useNavigate
 
 const Dashboard = () => {
   const [invoices, setInvoices] = useState([]);
-  const { baseURL,setInvoicedata,setSelectedTemplate,setInvoiceTitle } = useContext(AppContext);
+  const { baseURL,setInvoiceData,setSelectedTemplate,setInvoiceTitle,initialInvoiceData } = useContext(AppContext);
 const navigate = useNavigate(); // Import useNavigate for navigation
   useEffect(() => {
     const fetchInvoices = async () => {
@@ -34,6 +34,14 @@ const navigate = useNavigate(); // Import useNavigate for navigation
     setInvoiceTitle(invoice.title || "New Invoice");
     navigate("/preview");
   };
+  const handleCreateNew = () => {
+    // reset to initial state from context
+    setInvoiceTitle("New Invoice");
+    setSelectedTemplate("template1");
+    setInvoiceData(initialInvoiceData);
+    navigate("/generate");
+  };
+  
    
   return (
     <div>
@@ -41,7 +49,7 @@ const navigate = useNavigate(); // Import useNavigate for navigation
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4">
           {/* Create New Invoice card */}
           <div className="col">
-            <div className="card h-100 d-flex justify-center align-items-center border-light shadow-sm cursor-pointer" style={{ minHeight: '270px' }}>
+            <div className="card h-100 d-flex justify-center align-items-center border-light shadow-sm cursor-pointer" style={{ minHeight: '270px' }} onClick={handleCreateNew}>
               <Plus size={48} />
               <p className="mt-3 fw-medium">create New Invoice</p>
 
@@ -68,7 +76,7 @@ const navigate = useNavigate(); // Import useNavigate for navigation
           {/* Render the existing invoices  */}
           {invoices.map((invoice, idx) => (
             <div className="col" key={idx}>
-              <div className="card h-100 shadow-sm cursor-pointer" style={{ minHeight: '270px' }}>
+              <div className="card h-100 shadow-sm cursor-pointer" style={{ minHeight: '270px' }} onClick={() => handleViewClick(invoice)}>
                 {/* Corrected property name to 'thumbnailUrl' */}
                 {invoice.thumbnailurl && (
                   <img src={invoice.thumbnailurl} className="card-img-top" style={{ height: '200px', objectFit: "cover" }} alt={`Invoice for ${invoice.title}`} />
