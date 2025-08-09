@@ -21,9 +21,17 @@ const PreviewPage = () => {
     try{
 
   setLoading(true);
+  const canvas=await html2canvas(previewRef.current, {
+    scale: 2, // Increase scale for better quality
+    useCORS: true, // Enable CORS to load external images
+    backgroundColor: "#fff", // Set background color to transparent
+    scrolly:-window.scrollY, });
+    const imageData=canvas.toDataURL("image/png")// Adjust for scroll position.
+      const thumbnailURL=await uploadInvoiceThumbnail(imageData);
 //TODO: create thumbnail url
 const payLoad = {
   ...invoiceData,
+  thumbnailURL,
   template: selectedTemplate,
 }
 const response=await saveInvoice(baseURL, payLoad);
