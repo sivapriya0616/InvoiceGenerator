@@ -3,6 +3,7 @@ import { templates } from "../assets/assets.js";
 import { AppContext } from "../context/AppContext.jsx"; // Import AppContext to access shared state
 import InvoicePreview from "../components/InvoicePreview.jsx"; // Import InvoicePreview component
 import { saveInvoice } from "../service/invoicesevice.js"; // Import saveInvoice function to handle saving invoices
+import { deleteInvoice } from "../service/invoicesevice.js";
 import { uploadInvoiceThumbnail } from "../service/cloudinarySErvice.js"; // Import uploadInvoiceThumbnail function to handle thumbnail uploads
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -55,6 +56,30 @@ toast.error('Failed to save invoice',);}
 
 
   }
+  const handleDelete = async ()=> {
+    // 1. Check if invoice ID is missing
+    // if (!invoiceData.id) {
+    //   toast.error("Invoice ID is missing.");
+    //   return;
+    // }
+  
+    try {
+      // 2. Call API to delete invoice
+      const response= await deleteInvoice(baseURL, invoiceData.id);
+  
+      // 3. If backend returned 204 No Content
+      if (response.status === 204) {
+        toast.success("Invoice deleted successfully.");
+        navigate("/dashboard");
+      } else {
+        toast.error("Unable to delete invoice.");
+      }
+    } catch (error) {
+      toast.error(`Failed to delete invoice: ${error.message}`);
+    }
+  };
+  
+
 
   return (
     <div className="previewpage container-fluid d-flex flex-column p-3 min-vh-100">
@@ -80,9 +105,9 @@ toast.error('Failed to save invoice',);}
             {loading &&<Loader2 className="me-2 spin-animation" size={18}/>}
             {loading ? "Saving..." : "Save and Exit"}
           </button>
-          <button className="btn btn-danger">
+          {invoiceData.id && <button className="btn btn-danger" onClick={handleDelete}>
             Delete Invoice
-          </button>
+          </button>}
           <button className="btn btn-secondary">
             Back to Dashboard
           </button>
