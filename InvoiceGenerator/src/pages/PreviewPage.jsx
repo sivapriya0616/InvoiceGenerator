@@ -20,6 +20,7 @@ const PreviewPage = () => {
   const previewRef = useRef();
   const { selectedTemplate, setSelectedTemplate, invoiceData,baseURL } = useContext(AppContext); 
   const[loading, setLoading] = useState(false); // State to manage loading state
+  const[downloading, setDownloading] = useState(false); // State to manage downloading state
   // Make sure setSelectedTemplate and invoiceData are provided by AppContext
   const handleSaveAndExit=async()=>{
     try{
@@ -78,7 +79,25 @@ toast.error('Failed to save invoice',);}
       toast.error(`Failed to delete invoice: ${error.message}`);
     }
   };
-  
+
+  const handleDownloadPdf = async () => {
+  if (!previewRef.current) return;
+
+  try {
+    setDownloading(true);
+    await generatePdfFromElement(
+      previewRef.current,
+      `invoice_${Date.now()}.pdf`
+    );
+  } catch (error) {
+    toast.error(
+      `Failed to generate invoice${error?.message ? `: ${error.message}` : ""}`
+    );
+  } finally {
+    setDownloading(false);
+  }
+};
+
 
 
   return (
